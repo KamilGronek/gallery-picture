@@ -72,11 +72,9 @@ function AutoCompletePage() {
           <div className="input-browser">
             <AutoComplete
               resultsArray={resultsArray}
-              setInputName={setInputName}
               onClickEnter={onClickEnter}
               handleInputSearch={handleInputSearch}
               handleAutoComplete={handleAutoComplete}
-              inputName={inputName}
             />
           </div>
         </div>
