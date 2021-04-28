@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useHistory } from "react-router-dom";
-import AutoComplete from "./autocomplete/AutoComplete";
+import AutoComplete from "./AutoComplete";
 
 function AutoCompletePage() {
   const [resultsArray, setResultsArray] = useState([]);
@@ -21,8 +21,8 @@ function AutoCompletePage() {
       });
   }, [inputName]);
 
-  const onClickEnter = (e) => {
-    if (e.keyCode === 13 && resultsArray.length !== 0) {
+  const handleEnterDown = (e) => {
+    if ( resultsArray.length !== 0) {
       setClickEnter(!clickEnter);
       const location = {
         pathname: `/result/${e.target.value}`,
@@ -34,11 +34,9 @@ function AutoCompletePage() {
     }
   };
 
-  const handleAutoComplete = (newValue) => {
-    setInputName(newValue);
-
+  const handleAutoComplete = (searchQuery) => {
     const location = {
-      pathname: `/result/${newValue}`,
+      pathname: `/result/${searchQuery}`,
     };
     history.push(location);
   };
@@ -72,11 +70,9 @@ function AutoCompletePage() {
           <div className="input-browser">
             <AutoComplete
               resultsArray={resultsArray}
-              setInputName={setInputName}
-              onClickEnter={onClickEnter}
-              handleInputSearch={handleInputSearch}
-              handleAutoComplete={handleAutoComplete}
-              inputName={inputName}
+              onConfirm={handleEnterDown}
+              onInputSearch={handleInputSearch}
+              onAutoComplete={handleAutoComplete}
             />
           </div>
         </div>

@@ -7,11 +7,11 @@ function CustomInputAutocomplete(props) {
     <Autocomplete
       id="custom-input-demo"
       onChange={(e, newValue) => {
-        props.onClickEnter(e, newValue);
-        props.handleAutoComplete(newValue);
+        props.onConfirm(e, newValue);
+        props.onAutoComplete(newValue);  // wybranie opcji w inpucie
       }}
-      onInputChange={(e, newInputValue) => {
-        props.handleInputSearch(newInputValue);
+      onInputChange={(e, newInputValue) => { 
+        props.onInputSearch(newInputValue);  //zmiana textu w inpucie
       }}
       options={options}
       renderInput={(params) => (
@@ -20,8 +20,10 @@ function CustomInputAutocomplete(props) {
             placeholder="Search free high-resolution photos"
             type="text"
             {...params.inputProps}
-            onKeyDown={(e) => {
-              props.onClickEnter(e);
+            onKeyDown={(e) => {    //klikniecie w klawiature
+              if(e.keyCode === 13){
+              props.onConfirm(e);
+              }
             }}
           />
         </div>
