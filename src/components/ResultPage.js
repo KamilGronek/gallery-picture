@@ -40,8 +40,8 @@ function ResultPage() {
       });
   }, [inputName]);
 
-  const onClickEnter = (e) => {
-    if (e.keyCode === 13 && resultsArray.length !== 0) {
+  const handleEnterDown = (e) => {
+    if (resultsArray.length !== 0) {
       setClickEnter(!clickEnter);
       window.history.replaceState(null, "", `/result/${e.target.value}`);
     }
@@ -87,9 +87,9 @@ function ResultPage() {
   const handleOnClick = () => history.goBack();
 
  
-  const handleAutoComplete = (newValue) => {
-    setClickEnter(!clickEnter);
-    window.history.replaceState(null, "", `/result/${newValue}`);
+  const handleAutoComplete = (searchQuery) => {
+    // setClickEnter(!clickEnter);
+    window.history.replaceState(null, "", `/result/${searchQuery}`);
   };
 
   return (
@@ -98,11 +98,9 @@ function ResultPage() {
         <div className="gallery__input-browser">
           <AutoComplete
             resultsArray={resultsArray}
-            setInputName={setInputName}
-            onClickEnter={onClickEnter}
-            handleInputSearch={handleInputSearch}
-            handleAutoComplete={handleAutoComplete}
-            inputName={inputName}
+            onConfirm={handleEnterDown}
+            onInputSearch={handleInputSearch}
+            onAutoComplete={handleAutoComplete}
           />
         </div>
         <div className="gallery__info">
