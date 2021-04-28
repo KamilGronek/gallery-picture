@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useHistory } from "react-router-dom";
-import AutoComplete from "./autocomplete/AutoComplete";
+import AutoComplete from "./AutoComplete";
 
 function AutoCompletePage() {
   const [resultsArray, setResultsArray] = useState([]);

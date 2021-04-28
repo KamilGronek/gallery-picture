@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import AutoComplete from "./autocomplete/AutoComplete";
+import AutoComplete from "./AutoComplete";
 import { useHistory, useLocation, useParams } from "react-router-dom";
-import ModalSide from "./resultsPageChild/ModalSide";
-import Gallery from "./resultsPageChild/Gallery";
+import GalleryModal from "./GalleryModal";
+import Gallery from "./Gallery";
 
 function ResultPage() {
   const { message } = useParams("");
@@ -74,7 +74,7 @@ function ResultPage() {
     let tab = resultsPhotoArray
       .filter((result) => result.id === id)
       .map((res) => (
-        <ModalSide
+        <GalleryModal
           key={res.id}
           res={res}
           modalIsOpen={modalIsOpen}
